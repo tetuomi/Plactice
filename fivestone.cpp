@@ -57,7 +57,7 @@ int scan_position();
 int check_position(string _x,string _y);
 int set_board();
 int connected_stone_count(int _x,int _y);
-int judge_board();
+int judge_board(int connected_stone);
 int game_end();
 
 int deal;
@@ -84,14 +84,13 @@ int main(){
       break;
     case SET_BOARD :
       deal = set_board();
-      cout << "その石と" << connected_stone_count(num_x,num_y) << "個の石がつながっています\n\n";
       break;
-      /*case JUDGE_BOARD :
-      deal = judge_board();
+    case JUDGE_BOARD :
+      deal = judge_board(connected_stone_count(num_x,num_y));
       break;
     case GAME_END :
       deal = game_end();
-      break;*/
+      break;
     default :
       return 0;
     }
@@ -153,7 +152,7 @@ int set_board(){
     cout << '\n';
   }
   cout << "(y)\n\n\n";
-  return SCAN_POSITION;
+  return JUDGE_BOARD;
 }
 
 int connected_stone_count(int _x,int _y){
@@ -175,12 +174,19 @@ int connected_stone_count(int _x,int _y){
   }
   return max_count;
 }
-/*
-int judge_board(){
-  return GAME_END;
+
+int judge_board(int connected_stone){
+  if(connected_stone >= 5){
+    return GAME_END;
+  }
+  else {
+    turn ^= 1;
+    return SCAN_POSITION;
+  }
 }
-/*
+
 int game_end(){
+  cout << "Player" << turn + 1 << "'s win!!!!\n\n\n";
   return DEAL_MAX;
 }
-*/
+
