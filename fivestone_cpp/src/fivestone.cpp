@@ -118,12 +118,11 @@ int back_board(){
     if(0 >= num || turn_count < num) good_boy = false;
     else {
       for(int a = turn_count;a >= num;a--){
-        cout<< "y:" << board[a - 1].Y << "  x:" << board[a - 1].X  << '\n';
         stone_posi[board[a - 1].Y - 1][board[a - 1].X - 1] = stone_type[STONE_NONE];
         board.pop_back();
-        turn_count = num - 1;
-        turn = (num - 1) % 2;
       }
+      turn_count = num - 1;
+      turn = (num - 1) % 2;
     }
   }
   return good_boy? SET_INIT_BOARD : SCAN_POSITION;
