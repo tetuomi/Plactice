@@ -4,6 +4,7 @@
 #include <iostream>
 
 int game_start();
+void sow_board();
 int set_init_board();
 int scan_position();
 int check_position(std::string _x,std::string _y);

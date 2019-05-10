@@ -68,8 +68,7 @@ int game_start(){
   return SET_INIT_BOARD;
 }
 
-int set_init_board(){
-  cout << "        " << turn_count + 1 << " TIME\n";
+void show_board(){
   cout << "   1 2 3 4 5 6 7 8 9 (x)\n"; 
   for(int a = 0;a < SIZE;a++){
     cout << ' '<< a + 1;
@@ -79,6 +78,11 @@ int set_init_board(){
     cout << '\n';
   }
   cout << "(y)\n\n\n";
+}
+
+int set_init_board(){
+  cout << "        " << turn_count + 1 << " TIME\n";
+  show_board();
   return SCAN_POSITION;
 }
 
@@ -131,15 +135,7 @@ int back_board(){
 int set_board(){
   stone_posi[num_y - 1][num_x - 1] = stone_type[turn];
   cout << "        " << turn_count + 2 << " TIME\n";
-  cout << "   1 2 3 4 5 6 7 8 9 (x)\n"; 
-  for(int a = 0;a < SIZE;a++){
-    cout << ' '<< a + 1;
-    for(int b = 0;b < SIZE;b++){
-      cout << ' ' << stone_posi[a][b];
-    }
-    cout << '\n';
-  }
-  cout << "(y)\n\n\n";
+  show_board();
   return JUDGE_BOARD;
 }
 
