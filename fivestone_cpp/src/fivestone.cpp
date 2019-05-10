@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 #define SIZE 9
@@ -9,6 +10,7 @@ enum DEAL {
   SET_INIT_BOARD,
   SCAN_POSITION,
   CHECK_POSITION,
+  BACK_BOARD,
   SET_BOARD,
   JUDGE_BOARD,
   GAME_END,
@@ -50,20 +52,12 @@ int directions[][2] = {
   {1,0}, //DIRECTION_RIGHT
   {1,1}, //DIRECTION_RIGHT_DOWN
 };
-/*
-int game_start();
-int set_init_board();
-int scan_position();
-int check_position(string _x,string _y);
-int set_board();
-int connected_stone_count(int _x,int _y);
-int judge_board(int connected_stone);
-int game_end();
-*/
+
 int turn = STONE_BLACK;
 string x,y;
 bool Right_position = true;
 int num_x,num_y;
+int turn_count;
 
 int game_start(){
   for(int a = 0;a < SIZE;a++){
@@ -75,6 +69,7 @@ int game_start(){
 }
 
 int set_init_board(){
+  cout << "        " << turn_count + 1 << " TIME\n";
   cout << "   1 2 3 4 5 6 7 8 9 (x)\n"; 
   for(int a = 0;a < SIZE;a++){
     cout << ' '<< a + 1;
@@ -103,14 +98,40 @@ int scan_position(){
 
 int check_position(string _x,string _y){
   num_x = (int)(_x[0] - '0'),num_y = (int)(_y[0] - '0');
+  if(_x == "kontetsu" || _y == "kontetsu") return BACK_BOARD;
   if(_x[1] != '\0' || _y[1] != '\0') Right_position = false;
   else if(0 > num_x ||SIZE < num_x || 0 > num_y ||SIZE < num_y ) Right_position = false;
   else if(stone_posi[num_y - 1][num_x - 1] != stone_type[STONE_NONE]) Right_position = false;
   return Right_position? SET_BOARD : SCAN_POSITION;  
 }
 
+int back_board(){
+  string time;
+  bool good_boy = true;
+  cout << "What TIME do you want to return?\n"
+       << "Say!(int)  :";
+  cin >> time;
+  // if(!none_of(&time[0],&time[time.size() -1],
+  //          [](char x) {return (x < '0' || x > '9');})) good_boy = false;
+  if(good_boy){
+    int num = stoi(time,nullptr,10);
+    if(0 >= num || turn_count < num) good_boy = false;
+    else {
+      for(int a = turn_count;a >= num;a--){
+        cout<< "y:" << board[a - 1].Y << "  x:" << board[a - 1].X  << '\n';
+        stone_posi[board[a - 1].Y - 1][board[a - 1].X - 1] = stone_type[STONE_NONE];
+        board.pop_back();
+        turn_count = num - 1;
+        turn = (num - 1) % 2;
+      }
+    }
+  }
+  return good_boy? SET_INIT_BOARD : SCAN_POSITION;
+}
+
 int set_board(){
   stone_posi[num_y - 1][num_x - 1] = stone_type[turn];
+  cout << "        " << turn_count + 2 << " TIME\n";
   cout << "   1 2 3 4 5 6 7 8 9 (x)\n"; 
   for(int a = 0;a < SIZE;a++){
     cout << ' '<< a + 1;
@@ -148,6 +169,8 @@ int judge_board(int connected_stone){
     return GAME_END;
   }
   else {
+    board.push_back({num_x,num_y});
+    turn_count++;
     turn ^= STONE_WHITE;
     return SCAN_POSITION;
   }
@@ -173,6 +196,9 @@ void game_run(){
       break;
     case CHECK_POSITION :
       deal = check_position(x,y);
+      break;
+    case BACK_BOARD :
+      deal = back_board();
       break;
     case SET_BOARD :
       deal = set_board();
