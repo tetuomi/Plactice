@@ -111,8 +111,8 @@ int back_board(){
   cout << "What TIME do you want to return?\n"
        << "Say!(int)  :";
   cin >> time;
-  // if(!none_of(&time[0],&time[time.size() -1],
-  //          [](char x) {return (x < '0' || x > '9');})) good_boy = false;
+  if(!none_of(&time[0],&time[time.size() -1],
+              [](char x) {return (x < '0' || x > '9');})) good_boy = false;
   if(good_boy){
     int num = stoi(time,nullptr,10);
     if(0 >= num || turn_count < num) good_boy = false;
