@@ -103,7 +103,7 @@ int scan_position(){
 int check_position(string _x,string _y){
   num_x = (int)(_x[0] - '0'),num_y = (int)(_y[0] - '0');
   if(_x == "kontetsu" || _y == "kontetsu") return BACK_BOARD;
-  if(_x[1] != '\0' || _y[1] != '\0') Right_position = false;
+  else if(_x[1] != '\0' || _y[1] != '\0') Right_position = false;
   else if(0 > num_x ||SIZE < num_x || 0 > num_y ||SIZE < num_y ) Right_position = false;
   else if(stone_posi[num_y - 1][num_x - 1] != stone_type[STONE_NONE]) Right_position = false;
   return Right_position? SET_BOARD : SCAN_POSITION;  
