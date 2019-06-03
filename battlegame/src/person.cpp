@@ -1,21 +1,27 @@
 #include "../include/person.hpp"
 #include <iostream>
 #include <iomanip>
-
+#include <random>
 Person::Person(int _hp,int _atack) {
   hp = _hp;
   atack = _atack;
   turn = 1;
 }
 
+std::random_device rnd;
+std::mt19937 mt(rnd());
+  
 void battle(Person &suneo,Person &brave) {
+  static int realAttack; 
   if(suneo.turn){
-    std::cout << "勇者の攻撃> " << brave.atack << " のダメージ\n";             
-    suneo.hp -= brave.atack;
+    realAttack = brave.atack + mt()%brave.atack;
+    std::cout << "勇者の攻撃> " << realAttack << " のダメージ\n";             
+    suneo.hp -= realAttack;
   }
   else {
-    std::cout << "スネ夫の攻撃> " << suneo.atack << " のダメージ\n";
-    brave.hp -= suneo.atack ;
+    realAttack = suneo.atack + mt()%suneo.atack;
+    std::cout << "スネ夫の攻撃> " << realAttack << " のダメージ\n";
+    brave.hp -= realAttack;
   }
   suneo.turn ^= 1;
 }
