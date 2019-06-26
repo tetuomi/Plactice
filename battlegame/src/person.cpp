@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <random>
 #include <ncurses.h>
+
 Person::Person(int _hp,int _atack) {
   hp = _hp;
   atack = _atack;
