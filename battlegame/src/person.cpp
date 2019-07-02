@@ -2,37 +2,36 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
-#include <ncurses.h>
 
 Person::Person(int _hp,int _atack) {
   hp = _hp;
   atack = _atack;
-  turn = 1;
+  brave_turn = 1;
+}
+
+const int Person::get_damage() const{
+  return damage;
+}
+
+const int Person::get_hp() const{
+  return hp;
+}
+
+const int Person::get_turn() const{
+  return brave_turn;
 }
 
 std::random_device rnd;
 std::mt19937 mt(rnd());
   
-void battle(Person &suneo,Person &brave) {
-  static int realAttack; 
-  if(suneo.turn){
-    realAttack = brave.atack + mt()%brave.atack;
-    printw("\nbrave atack> %d damages",realAttack);
-    suneo.hp -= realAttack;
+void battle(Person& emperor,Person& brave) {
+  if(brave.brave_turn){
+    brave.damage = brave.atack + mt()%brave.atack;
+    emperor.hp -= brave.damage;
   }
   else {
-    realAttack = suneo.atack + mt()%suneo.atack;
-    printw("\nsuneo atack> %d damages",realAttack);
-    brave.hp -= realAttack;
+    emperor.damage = emperor.atack + mt()%emperor.atack;
+    brave.hp -= emperor.damage;
   }
-  suneo.turn ^= 1;
-}
-
-void results(Person &suneo,Person &brave) {
-  printw("\n+----------------------+\n");
-  printw("|suneo HP:         %3d|\n",suneo.hp);
-  printw("+----------------------+\n\n");
-  printw("+----------------------+\n");
-  printw("|brave HP:          %3d|\n",brave.hp);
-  printw("+----------------------+\n\n");
+  brave.brave_turn ^= 1;
 }

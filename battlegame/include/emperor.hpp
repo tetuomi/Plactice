@@ -1,5 +1,5 @@
-#ifndef emperor_hpp
-#define emperor_hpp
+#ifndef EMPEROR_HPP
+#define EMPEROR_HPP
 
 #include <iostream>
 
