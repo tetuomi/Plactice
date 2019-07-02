@@ -10,6 +10,7 @@ Master::Master() {
 
 void Master::show_selection() {
   if(brave_turn){
+    mvaddch(20 + selected, 5, '>');
     mvprintw(20,6,"atack");
     mvprintw(21,6,"heal");
   }
@@ -17,10 +18,6 @@ void Master::show_selection() {
 
 const bool Master::get_turn() const {
   return brave_turn;
-}
-
-const int Master::get_selected() const {
-  return selected;
 }
 
 void Master::add_selected() {

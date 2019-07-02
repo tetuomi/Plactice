@@ -23,7 +23,6 @@ int main() {
     master.show_hp(emperor,brave);
     master.show_selection();
     
-    mvaddch(20 + master.get_selected(), 5, '>');
     const auto buff = getch();
     switch(buff) {
       case KEY_UP:    master.subtract_selected(); break;
