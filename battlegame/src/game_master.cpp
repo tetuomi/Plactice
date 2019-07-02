@@ -1,13 +1,11 @@
 #include "../include/game_master.hpp"
 #include "../include/person.hpp"
 #include <ncurses.h>
+#define CHOICES 4
 
 Master::Master() {
   brave_turn = true;
-}
-
-const bool Master::get_turn() const {
-  return brave_turn;
+  selected = 0;
 }
 
 void Master::show_selection() {
@@ -15,6 +13,22 @@ void Master::show_selection() {
     mvprintw(20,6,"atack");
     mvprintw(21,6,"heal");
   }
+}
+
+const bool Master::get_turn() const {
+  return brave_turn;
+}
+
+const int Master::get_selected() const {
+  return selected;
+}
+
+void Master::add_selected() {
+  selected = (selected + 1) % CHOICES;
+}
+
+void Master::subtract_selected() {
+  selected = (CHOICES + selected - 1) % CHOICES;
 }
 
 void Master::show_damage(const Person& emperor,const Person& brave) {
