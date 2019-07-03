@@ -18,9 +18,10 @@ int main() {
   while(true) {
     for(int i = 0;i < 11;i++)
       for(int j = 0;j < 12;j++)
-        mvaddch(i + 1, j + 1 + 50, AA[i][j]);
+        mvaddch(i + 11, j + 1 + 50, AA[i][j]);
 
     master.show_hp(emperor,brave);
+    master.show_turn();
     master.show_selection();
     
     const auto buff = getch();

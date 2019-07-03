@@ -14,6 +14,7 @@ public:
   const bool get_turn() const;
   void add_selected();
   void subtract_selected();
+  void show_turn();
   void show_damage(const Person& emperor,const Person& brave);
   void show_hp(const Person& emperor,const Person& brave);
 };
