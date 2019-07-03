@@ -15,7 +15,8 @@ public:
   const int get_damage() const;
   const int get_hp() const;
   const int get_turn() const;
-  friend void battle(Person& suneo,Person& brave,const Master& master);
+  friend void brave_atack(Person& suneo,Person& brave);
+  friend void emperor_atack(Person& suneo,Person& brave);
 };
   
 #endif

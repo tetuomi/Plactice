@@ -12,6 +12,7 @@ public:
   Master();
   void show_selection();
   const bool get_turn() const;
+  const int get_selected() const;
   void add_selected();
   void subtract_selected();
   void show_turn();

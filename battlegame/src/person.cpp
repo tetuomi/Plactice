@@ -19,13 +19,12 @@ const int Person::get_hp() const{
 std::random_device rnd;
 std::mt19937 mt(rnd());
   
-void battle(Person& emperor,Person& brave,const Master& master) {
-  if(master.get_turn()){
+void brave_atack(Person& emperor,Person& brave) {
     brave.damage = brave.atack + mt()%brave.atack;
     emperor.hp -= brave.damage;
-  }
-  else {
+}
+
+void emperor_atack(Person& emperor,Person& brave) {
     emperor.damage = emperor.atack + mt()%emperor.atack;
     brave.hp -= emperor.damage;
-  }
 }

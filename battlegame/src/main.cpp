@@ -4,6 +4,11 @@
 #include <iostream>
 #include <ncurses.h>
 
+enum Action{
+  ATACK,
+  HEAL
+};
+
 int main() {
   initscr();
   cbreak();
@@ -31,8 +36,21 @@ int main() {
     }
     clear();    
     if(buff == '\n'){
-      battle(emperor,brave,master);
-      master.show_damage(emperor,brave);
+      if(master.get_turn()){
+        switch(master.get_selected()){
+          case ATACK:
+            brave_atack(emperor,brave);
+            master.show_damage(emperor,brave);
+            break;
+          case HEAL:
+            mvaddch(40,5,'o');
+            break;
+        }
+      }
+      else{
+        emperor_atack(emperor,brave);
+        master.show_damage(emperor,brave);
+      }
     }
   }
   endwin();
