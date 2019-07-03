@@ -46,7 +46,7 @@ void Person::hp_recovery(Person& person) {
   recovery = RECOVERY + (mt() % RECOVERY);
   person.hp += recovery;
 
-  if(person.hp >= person.max_hp){
+  if(person.hp >= person.max_hp) {
     recovery -= (person.hp - person.max_hp);
     person.hp = person.max_hp;
   }

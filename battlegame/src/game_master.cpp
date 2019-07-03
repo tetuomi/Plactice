@@ -1,7 +1,7 @@
 #include "../include/game_master.hpp"
 #include "../include/person.hpp"
 #include <ncurses.h>
-#define CHOICES 4
+#define CHOICES 2
 
 Master::Master() {
   brave_turn = true;
@@ -12,7 +12,7 @@ void Master::show_selection() {
   if(brave_turn){
     mvaddch(30 + selected, 5, '>');
     mvprintw(30,6,"atack"); //selected = 0
-    mvprintw(31,6,"heal");  //selected = 1
+    mvprintw(31,6,"recovery");  //selected = 1
   }
 }
 
@@ -56,7 +56,7 @@ void Master::show_damage(const Person& emperor,const Person& brave) {
 }
 
 void Master::show_recovery(const Person& person) {
-  if(brave_turn){
+  if(brave_turn) {
     attron(A_BOLD);
     mvprintw(30, 30, "brave recoveried %2d !",person.get_recovery());
     attroff(A_BOLD);
