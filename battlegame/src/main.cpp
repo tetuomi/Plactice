@@ -18,14 +18,14 @@ int main() {
   curs_set(0); // 0:invisible
 
   
-  Person emperor(90,5),brave(120,3);
+  Person emperor(150,5,80),brave(120,3,50);
   Master master;
   while(true) {
     for(int i = 0;i < 11;i++)
       for(int j = 0;j < 12;j++)
         mvaddch(i + 11, j + 1 + 50, AA[i][j]);
 
-    master.show_hp(emperor,brave);
+    master.show_status(emperor,brave);
     master.show_turn();
     master.show_selection();
     
@@ -43,7 +43,8 @@ int main() {
             master.show_damage(emperor,brave);
             break;
           case HEAL:
-            mvaddch(40,5,'o');
+            brave.hp_recovery(brave);
+            master.show_recovery(brave);
             break;
         }
       }

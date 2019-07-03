@@ -55,12 +55,28 @@ void Master::show_damage(const Person& emperor,const Person& brave) {
   brave_turn ^= true;
 }
 
-void Master::show_hp(const Person& emperor,const Person& brave) {
+void Master::show_recovery(const Person& person) {
+  if(brave_turn){
+    attron(A_BOLD);
+    mvprintw(30, 30, "brave recoveried %2d !",person.get_recovery());
+    attroff(A_BOLD);
+  }
+  else
+    mvprintw(30, 30, "emperor recoveried %2d !",person.get_recovery());
+
+  brave_turn ^= true;
+}
+
+void Master::show_status(const Person& emperor,const Person& brave) {
   mvprintw(15,5,"+------------------+");
-  mvprintw(16,5,"| Emperor's HP  %3d|",emperor.get_hp());
-  mvprintw(17,5,"+------------------+");
+  mvprintw(16,5,"|  ** Emperor **   |");
+  mvprintw(17,5,"| HP            %3d|",emperor.get_hp());
+  mvprintw(18,5,"| MP             %2d|",emperor.get_mp());
+  mvprintw(19,5,"+------------------+");
 
   mvprintw(30,70,"+------------------+");
-  mvprintw(31,70,"| Brave's HP    %3d|",brave.get_hp());
-  mvprintw(32,70,"+------------------+");  
+  mvprintw(31,70,"|   ** Brave **    |");
+  mvprintw(32,70,"| HP            %3d|",brave.get_hp());
+  mvprintw(33,70,"| MP             %2d|",brave.get_mp());
+  mvprintw(34,70,"+------------------+");
 }
