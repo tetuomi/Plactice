@@ -5,8 +5,12 @@
 class Action;
 
 class Master {
+  bool brave_turn;
 public:
-  void show_status(const Action& action);
+  Master();
+  bool get_turn() const;
+  void show_status(const Action& action) const;
+  void show_damage(const Action& action);
 };
 
 #endif

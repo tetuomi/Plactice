@@ -12,20 +12,14 @@ Action::Action(const Person& brave,const Person& emperor) {
 
   Vstatus.push_back(emperor.get_status());
   Vmax_hp.push_back(emperor.get_max_hp());
-
-  brave_turn = true;
-}
-
-bool Action::get_turn() const {
-  return brave_turn;
 }
 
 const std::vector<status>& Action::get_Vstatus() const {
   return Vstatus;
 }
 
-void Action::atack(Person& brave,Person& emperor) {
-  if(brave_turn) {
+void Action::atack(Person& brave,Person& emperor,const Master& master) {
+  if(master.get_turn()) {
     brave.set_status().damage = brave.set_status().atack
       + mt()%brave.set_status().atack;
     emperor.set_status().hp -= brave.set_status().damage;
@@ -41,5 +35,4 @@ void Action::atack(Person& brave,Person& emperor) {
     Vstatus[1].damage = emperor.set_status().damage;
     Vstatus[0].hp -= Vstatus[1].damage;
   }
-  brave_turn ^= true;
 }

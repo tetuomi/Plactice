@@ -5,7 +5,7 @@
 #include <iostream>
 #include <ncurses.h>
 /*
-enum Action{
+enum SELECTIONS{
   ATACK,
   HEAL
 };
@@ -31,7 +31,8 @@ int main() {
     const auto buff = getch();
     if(buff == '\n'){
       clear();
-      action.atack(brave,emperor);
+      action.atack(brave,emperor,master);
+      master.show_damage(action);
     }
     
     /*

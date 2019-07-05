@@ -4,7 +4,15 @@
 #define CHOICES 2
 
 
-void Master::show_status(const Action& action) {
+Master::Master() {
+  brave_turn = true;
+}
+
+bool Master::get_turn() const {
+  return brave_turn;
+}
+
+void Master::show_status(const Action& action) const {
   const auto& new_Vstatus{action.get_Vstatus()};
   mvprintw(15,5,"+------------------+");
   mvprintw(16,5,"|  ** Emperor **   |");
@@ -19,6 +27,17 @@ void Master::show_status(const Action& action) {
   mvprintw(34,70,"+------------------+");
 }
 
+void Master::show_damage(const Action& action){
+  if(brave_turn){
+    attron(A_BOLD);
+    mvprintw(30, 30, "brave attacked! %2d damages",action.get_Vstatus()[0].damage);
+    attroff(A_BOLD);
+  }
+  else
+    mvprintw(30, 30, "emperor attacked! %2d damages",action.get_Vstatus()[1].damage);
+
+  brave_turn ^= true;
+}
 /*
 void Master::show_selection() {
   if(brave_turn){
