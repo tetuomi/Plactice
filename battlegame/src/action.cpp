@@ -1,0 +1,45 @@
+#include "../include/person.hpp"
+#include "../include/action.hpp"
+#include <vector>
+#include <random>
+
+std::random_device rnd;
+std::mt19937 mt(rnd());
+
+Action::Action(const Person& brave,const Person& emperor) {
+  Vstatus.push_back(brave.get_status());
+  Vmax_hp.push_back(brave.get_max_hp());
+
+  Vstatus.push_back(emperor.get_status());
+  Vmax_hp.push_back(emperor.get_max_hp());
+
+  brave_turn = true;
+}
+
+bool Action::get_turn() const {
+  return brave_turn;
+}
+
+const std::vector<status>& Action::get_Vstatus() const {
+  return Vstatus;
+}
+
+void Action::atack(Person& brave,Person& emperor) {
+  if(brave_turn) {
+    brave.set_status().damage = brave.set_status().atack
+      + mt()%brave.set_status().atack;
+    emperor.set_status().hp -= brave.set_status().damage;
+
+    Vstatus[0].damage = brave.set_status().damage;
+    Vstatus[1].hp -= Vstatus[0].damage;
+  }
+  else {
+    emperor.set_status().damage = emperor.set_status().atack
+      + mt()%emperor.set_status().atack;
+    brave.set_status().hp -= emperor.set_status().damage;
+
+    Vstatus[1].damage = emperor.set_status().damage;
+    Vstatus[0].hp -= Vstatus[1].damage;
+  }
+  brave_turn ^= true;
+}
