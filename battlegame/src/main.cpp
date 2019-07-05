@@ -1,14 +1,15 @@
 #include "../include/emperor.hpp"
-#include "../include/person.hpp"
 #include "../include/game_master.hpp"
+#include "../include/action.hpp"
+#include "../include/person.hpp"
 #include <iostream>
 #include <ncurses.h>
-
+/*
 enum Action{
   ATACK,
   HEAL
 };
-
+*/
 int main() {
   initscr();
   cbreak();
@@ -20,14 +21,23 @@ int main() {
   
   Person emperor(150,5,80),brave(120,3,50);
   Master master;
+  Action action(brave,emperor);
   while(true) {
     for(int i = 0;i < 11;i++)
       for(int j = 0;j < 12;j++)
         mvaddch(i + 11, j + 1 + 50, AA[i][j]);
 
+    master.show_status(action);
+    const auto buff = getch();
+    if(buff == '\n'){
+      clear();
+      action.atack(brave,emperor);
+    }
+    
+    /*
     master.show_status(emperor,brave);
     master.show_turn();
-    master.show_selection();
+    master.show_selection()
     
     const auto buff = getch();
     switch(buff) {
@@ -53,7 +63,9 @@ int main() {
         master.show_damage(emperor,brave);
       }
     }
-  }
+    }
+*/
+  }  
   endwin();
   return 0;
 }

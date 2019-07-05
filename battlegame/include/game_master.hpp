@@ -1,24 +1,12 @@
 #ifndef GAME_MASTER_HPP
 #define GAME_MASTER_HPP
-#include "person.hpp"
+#include "action.hpp"
 
-class Person;
+class Action;
 
 class Master {
-private:
-  bool brave_turn;
-  int selected; 
 public:
-  Master();
-  void show_selection();
-  const bool get_turn() const;
-  const int get_selected() const;
-  void add_selected();
-  void subtract_selected();
-  void show_turn();
-  void show_damage(const Person& emperor,const Person& brave);
-  void show_recovery(const Person& person);
-  void show_status(const Person& emperor,const Person& brave);
+  void show_status(const Action& action);
 };
 
 #endif
