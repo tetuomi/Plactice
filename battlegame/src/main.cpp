@@ -4,12 +4,12 @@
 #include "../include/person.hpp"
 #include <iostream>
 #include <ncurses.h>
-/*
+
 enum SELECTIONS{
   ATACK,
   HEAL
 };
-*/
+
 int main() {
   initscr();
   cbreak();
@@ -28,11 +28,32 @@ int main() {
         mvaddch(i + 11, j + 1 + 50, AA[i][j]);
 
     master.show_status(action);
+    master.show_selection();
+
     const auto buff = getch();
+    switch(buff) {
+      case KEY_UP:    master.subtract_selected(); break;
+      case KEY_DOWN:  master.add_selected();      break;
+    }
+    clear();
     if(buff == '\n'){
-      clear();
-      action.atack(brave,emperor,master);
-      master.show_damage(action);
+      if(master.get_turn()){
+        switch(master.get_selected()){
+          case ATACK:
+            action.atack(brave,emperor,master);
+            master.show_damage(action);
+            break;
+          case HEAL:
+            mvaddch(32,5,'o');
+            //    brave.hp_recovery(brave);
+            //    master.show_recovery(brave);
+            break;
+        }
+      }
+      else{
+        action.atack(brave,emperor,master);
+        master.show_damage(action);
+      }
     }
     
     /*
@@ -66,7 +87,7 @@ int main() {
     }
     }
 */
-  }  
+  }
   endwin();
   return 0;
 }

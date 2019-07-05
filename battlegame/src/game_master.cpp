@@ -1,15 +1,35 @@
 #include "../include/game_master.hpp"
 #include "../include/action.hpp"
 #include <ncurses.h>
-#define CHOICES 2
 
 
 Master::Master() {
   brave_turn = true;
+  selected = 0;
 }
 
 bool Master::get_turn() const {
   return brave_turn;
+}
+
+int Master::get_selected() const {
+  return selected;
+}
+
+void Master::add_selected() {
+  selected = (selected + 1) % CHOICES;
+}
+
+void Master::subtract_selected() {
+  selected = (CHOICES + selected - 1) % CHOICES;
+}
+
+void Master::show_selection() const {
+  if(brave_turn){
+    mvaddch(30 + selected, 5, '>');
+    mvprintw(30,6,"atack"); //selected = 0
+    mvprintw(31,6,"recovery");  //selected = 1
+  }
 }
 
 void Master::show_status(const Action& action) const {
@@ -30,7 +50,7 @@ void Master::show_status(const Action& action) const {
 void Master::show_damage(const Action& action){
   if(brave_turn){
     attron(A_BOLD);
-    mvprintw(30, 30, "brave attacked! %2d damages",action.get_Vstatus()[0].damage);
+    mvprintw(30, 30, "brave attacked! %2d damages",action.get_Vstatus()[0].damage); // const auto& の方が良いのか悪いのか。朝も起きれない。
     attroff(A_BOLD);
   }
   else
