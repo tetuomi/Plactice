@@ -13,7 +13,7 @@ status Person::get_status() const {
 
 int Person::get_max_hp() const {
   return max_hp;
- }
+}
 
 status& Person::set_status() {
   return _status;

@@ -36,25 +36,25 @@ void Master::show_status(const Action& action) const {
   const auto& new_Vstatus{action.get_Vstatus()};
   mvprintw(15,5,"+------------------+");
   mvprintw(16,5,"|  ** Emperor **   |");
-  mvprintw(17,5,"| HP            %3d|",new_Vstatus[1].hp);
-  mvprintw(18,5,"| MP            %3d|",new_Vstatus[1].mp);
+  mvprintw(17,5,"| HP            %3d|",new_Vstatus[0].hp);
+  mvprintw(18,5,"| MP            %3d|",new_Vstatus[0].mp);
   mvprintw(19,5,"+------------------+");
 
   mvprintw(30,70,"+------------------+");
   mvprintw(31,70,"|   ** Brave **    |");
-  mvprintw(32,70,"| HP            %3d|",new_Vstatus[0].hp);
-  mvprintw(33,70,"| MP            %3d|",new_Vstatus[0].mp);
+  mvprintw(32,70,"| HP            %3d|",new_Vstatus[1].hp);
+  mvprintw(33,70,"| MP            %3d|",new_Vstatus[1].mp);
   mvprintw(34,70,"+------------------+");
 }
 
 void Master::show_damage(const Action& action){
   if(brave_turn){
     attron(A_BOLD);
-    mvprintw(30, 30, "brave attacked! %2d damages",action.get_Vstatus()[0].damage); // const auto& の方が良いのか悪いのか。朝も起きれない。
+    mvprintw(30, 30, "brave attacked! %2d damages",action.get_Vstatus()[1].damage); // const auto& の方が良いのか悪いのか。朝も起きれない。
     attroff(A_BOLD);
   }
   else
-    mvprintw(30, 30, "emperor attacked! %2d damages",action.get_Vstatus()[1].damage);
+    mvprintw(30, 30, "emperor attacked! %2d damages",action.get_Vstatus()[0].damage);
 
   brave_turn ^= true;
 }
