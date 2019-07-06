@@ -44,9 +44,8 @@ int main() {
             master.show_damage(action);
             break;
           case HEAL:
-            mvaddch(32,5,'o');
-            //    brave.hp_recovery(brave);
-            //    master.show_recovery(brave);
+            action.hp_recovery(brave,master);
+            master.show_recovery(action);
             break;
         }
       }

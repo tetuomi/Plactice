@@ -58,6 +58,18 @@ void Master::show_damage(const Action& action){
 
   brave_turn ^= true;
 }
+
+void Master::show_recovery(const Action& action) {
+  if(brave_turn) {
+    attron(A_BOLD);
+    mvprintw(30, 30, "brave recoveried %2d !",action.get_Vstatus()[1].recovery);
+    attroff(A_BOLD);
+  }
+  else
+    mvprintw(30, 30, "emperor recoveried %2d !",action.get_Vstatus()[0].recovery);
+
+  brave_turn ^= true;
+}
 /*
 void Master::show_selection() {
   if(brave_turn){

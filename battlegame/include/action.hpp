@@ -17,7 +17,7 @@ public:
   Action(const Person& brave,const Person& emperor);
   const std::vector<status>& get_Vstatus() const ;
   void atack(Person& brave,Person& emperor,const Master& master);
-  //  void hp_recovery(Person& person);
+  void hp_recovery(Person& person,const Master& master);
 };
 
 #endif

@@ -37,12 +37,14 @@ void Action::atack(Person& brave,Person& emperor,const Master& master) {
     Vstatus[1].hp -= Vstatus[0].damage;
   }
 }
-/*
-void Action::hp_recovery(Person& person,Master& master) {
-  const auto _recovery{master.get_turn()};
+
+void Action::hp_recovery(Person& person,const Master& master) {
+  const auto who{master.get_turn()};
   person.set_status().mp -= MP;
   person.set_status().recovery = RECOVERY + mt()%RECOVERY;
-  person.set_status().hp += 
+  person.set_status().hp += person.get_status().recovery;
   
+  Vstatus[who].mp = person.get_status().mp;
+  Vstatus[who].recovery = person.get_status().recovery;
+  Vstatus[who].hp = person.get_status().hp;
 }
-*/
