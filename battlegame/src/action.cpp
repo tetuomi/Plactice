@@ -33,4 +33,5 @@ void Action::hp_recovery(Person& person,const Master& master) {
   Vstatus[who].mp = person.get_status().mp;
   Vstatus[who].recovery = person.get_status().recovery;
   Vstatus[who].hp = person.get_status().hp;
+  Vstatus[who].mp_lack = person.get_status().mp_lack;
 }

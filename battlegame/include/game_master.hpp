@@ -1,7 +1,7 @@
 #ifndef GAME_MASTER_HPP
 #define GAME_MASTER_HPP
 #include "action.hpp"
-#define CHOICES 4
+#define CHOICES 2
 
 class Action;
 

@@ -9,6 +9,7 @@ typedef struct {
   int atack;
   int damage;
   int recovery;
+  bool mp_lack;
 } status;
 
 class Person {

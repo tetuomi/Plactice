@@ -60,15 +60,23 @@ void Master::show_damage(const Action& action){
 }
 
 void Master::show_recovery(const Action& action) {
-  if(brave_turn) {
+  
+  if(action.get_Vstatus()[(int)brave_turn].mp_lack) {
     attron(A_BOLD);
-    mvprintw(30, 30, "brave recoveried %2d !",action.get_Vstatus()[1].recovery);
+    mvprintw(30,30,"MP is lacking!");
     attroff(A_BOLD);
   }
-  else
-    mvprintw(30, 30, "emperor recoveried %2d !",action.get_Vstatus()[0].recovery);
+  else {
+    if(brave_turn) {
+      attron(A_BOLD);
+      mvprintw(30, 30, "brave recoveried %2d !",action.get_Vstatus()[1].recovery);
+      attroff(A_BOLD);
+    }
+    else
+      mvprintw(30, 30, "emperor recoveried %2d !",action.get_Vstatus()[0].recovery);
 
-  brave_turn ^= true;
+    brave_turn ^= true;
+  }
 }
 /*
 void Master::show_selection() {
