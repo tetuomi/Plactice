@@ -2,6 +2,7 @@
 #include "../include/action.hpp"
 #include <vector>
 
+
 Action::Action(const Person& brave,const Person& emperor) {
   Vstatus.push_back(emperor.get_status());
   Vstatus.push_back(brave.get_status());
