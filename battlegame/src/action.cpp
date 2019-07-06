@@ -4,10 +4,7 @@
 
 Action::Action(const Person& brave,const Person& emperor) {
   Vstatus.push_back(emperor.get_status());
-  Vmax_hp.push_back(emperor.get_max_hp());
-  
   Vstatus.push_back(brave.get_status());
-  Vmax_hp.push_back(brave.get_max_hp());
 }
 
 const std::vector<status>& Action::get_Vstatus() const {

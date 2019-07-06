@@ -9,7 +9,6 @@ class Master;
 
 class Action {
 private:
-  std::vector<int> Vmax_hp;
   std::vector<status> Vstatus;
 public:
   Action(const Person& brave,const Person& emperor);
