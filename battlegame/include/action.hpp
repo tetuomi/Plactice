@@ -3,8 +3,6 @@
 #include <vector>
 #include "person.hpp"
 #include "game_master.hpp"
-#define MP 10
-#define RECOVERY 12
 
 class Person;
 class Master;

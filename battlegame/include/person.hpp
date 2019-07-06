@@ -1,5 +1,7 @@
 #ifndef PERSON_HPP
 #define PERSON_HPP
+#define MP 10
+#define RECOVERY 12
 
 typedef struct {
   int hp;
@@ -18,6 +20,8 @@ public:
   status get_status() const;
   int get_max_hp() const;
   status& set_status();
+  void pre_hp_recovery();
+  void pre_atack(Person& other);
 };
 
 #endif
