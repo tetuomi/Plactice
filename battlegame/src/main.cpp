@@ -12,16 +12,18 @@ enum SELECTIONS{
 
 int main() {
   initscr();
+  start_color();
+  init_pair(2, COLOR_GREEN, COLOR_BLUE);
   cbreak();
   keypad(stdscr, TRUE);
   nodelay(stdscr, FALSE);
   noecho();
   curs_set(0); // 0:invisible
-
   
-  Person emperor(150,5,80),brave(120,3,50);
+  Person emperor(100,5,80),brave(80,3,50);
   Master master;
   Action action(brave,emperor);
+
   while(true) {
     for(int i = 0;i < 11;i++)
       for(int j = 0;j < 12;j++)
@@ -53,6 +55,10 @@ int main() {
         action.atack(brave,emperor,master);
         master.show_damage(action);
       }
+    }
+    if(action.judge(brave) || action.judge(emperor)) {
+      master.show_status(action);
+      master.show_end();
     }
   }
   endwin();

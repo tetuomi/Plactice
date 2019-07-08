@@ -36,3 +36,8 @@ void Action::hp_recovery(Person& person,const Master& master) {
   Vstatus[who].hp = person.get_status().hp;
   Vstatus[who].mp_lack = person.get_status().mp_lack;
 }
+
+bool Action::judge(const Person& person) {
+  if(person.get_status().hp <= 0) return true; // 勝負あり
+  else return false;
+}

@@ -19,6 +19,7 @@ public:
   void show_status(const Action& action) const;
   void show_damage(const Action& action);
   void show_recovery(const Action& action);
+  void show_end() const;
 };
 
 #endif

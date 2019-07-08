@@ -60,7 +60,6 @@ void Master::show_damage(const Action& action){
 }
 
 void Master::show_recovery(const Action& action) {
-  
   if(action.get_Vstatus()[(int)brave_turn].mp_lack) {
     attron(A_BOLD);
     mvprintw(30,30,"MP is lacking!");
@@ -77,4 +76,10 @@ void Master::show_recovery(const Action& action) {
 
     brave_turn ^= true;
   }
+}
+
+void Master::show_end() const {
+    attrset(COLOR_PAIR(2) | A_BOLD);
+    mvprintw(50,50,"you %s",brave_turn? "lose" : "win!!");
+    attroff(COLOR_PAIR(2) | A_BOLD);
 }
