@@ -1,53 +1,42 @@
-#include "../include/person.hpp"
-#include <iostream>
-#include <iomanip>
+#include <person.hpp>
 #include <random>
-#define MP 10
-#define RECOVERY 12
 
-Person::Person(int _hp,int _atack,int _mp) {
-  max_hp = _hp;
-  hp = _hp;
-  mp = _mp;
-  atack = _atack;
-}
-
-const int Person::get_damage() const {
-  return damage;
-}
-
-const int Person::get_hp() const {
-  return hp;
-}
-
-const int Person::get_mp() const {
-  return mp;
-}
-
-const int Person::get_recovery() const {
-  return recovery;
-}
 
 std::random_device rnd;
 std::mt19937 mt(rnd());
-  
-void brave_atack(Person& emperor,Person& brave) {
-    brave.damage = brave.atack + mt()%brave.atack;
-    emperor.hp -= brave.damage;
+
+Person::Person(int _hp,int _atack,int _mp) {
+  max_hp = _hp;
+  _status.hp = _hp;
+  _status.mp = _mp;
+  _status.atack = _atack;
+  _status.mp_lack = false;
 }
 
-void emperor_atack(Person& emperor,Person& brave) {
-    emperor.damage = emperor.atack + mt()%emperor.atack;
-    brave.hp -= emperor.damage;
+status Person::get_status() const {
+  return _status;
 }
 
-void Person::hp_recovery(Person& person) {
-  person.mp -= MP;
-  recovery = RECOVERY + (mt() % RECOVERY);
-  person.hp += recovery;
+status& Person::set_status() {
+  return _status;
+}
 
-  if(person.hp >= person.max_hp) {
-    recovery -= (person.hp - person.max_hp);
-    person.hp = person.max_hp;
+void Person::pre_hp_recovery() {
+  if(_status.mp - MP >= 0) {
+    _status.mp -= MP;
+    _status.recovery = RECOVERY + mt()%RECOVERY;
+    _status.hp += _status.recovery;
+
+    if(_status.hp >= max_hp) {
+      _status.recovery -= (_status.hp - max_hp);
+      _status.hp = max_hp;
+    }
   }
+  else
+    _status.mp_lack = true;
+}
+
+void Person::pre_atack(Person& other) {
+  _status.damage = _status.atack + mt()%_status.atack;
+  other.set_status().hp -= _status.damage;
 }
