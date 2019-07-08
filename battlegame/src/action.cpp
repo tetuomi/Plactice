@@ -1,5 +1,5 @@
-#include "../include/person.hpp"
-#include "../include/action.hpp"
+#include <person.hpp>
+#include <action.hpp>
 #include <vector>
 
 

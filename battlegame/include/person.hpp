@@ -19,7 +19,6 @@ private:
 public:
   Person(int _hp,int _atack,int _mp);
   status get_status() const;
-  int get_max_hp() const;
   status& set_status();
   void pre_hp_recovery();
   void pre_atack(Person& other);

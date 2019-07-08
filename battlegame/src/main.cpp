@@ -1,7 +1,7 @@
-#include "../include/emperor.hpp"
-#include "../include/game_master.hpp"
-#include "../include/action.hpp"
-#include "../include/person.hpp"
+#include <emperor.hpp>
+#include <game_master.hpp>
+#include <action.hpp>
+#include <person.hpp>
 #include <iostream>
 #include <ncurses.h>
 
@@ -54,38 +54,6 @@ int main() {
         master.show_damage(action);
       }
     }
-    
-    /*
-    master.show_status(emperor,brave);
-    master.show_turn();
-    master.show_selection()
-    
-    const auto buff = getch();
-    switch(buff) {
-      case KEY_UP:    master.subtract_selected(); break;
-      case KEY_DOWN:  master.add_selected();      break;
-    }
-    clear();    
-    if(buff == '\n'){
-      if(master.get_turn()){
-        switch(master.get_selected()){
-          case ATACK:
-            brave_atack(emperor,brave);
-            master.show_damage(emperor,brave);
-            break;
-          case HEAL:
-            brave.hp_recovery(brave);
-            master.show_recovery(brave);
-            break;
-        }
-      }
-      else{
-        emperor_atack(emperor,brave);
-        master.show_damage(emperor,brave);
-      }
-    }
-    }
-*/
   }
   endwin();
   return 0;

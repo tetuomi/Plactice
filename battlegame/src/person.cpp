@@ -1,4 +1,4 @@
-#include "../include/person.hpp"
+#include <person.hpp>
 #include <random>
 
 
@@ -15,10 +15,6 @@ Person::Person(int _hp,int _atack,int _mp) {
 
 status Person::get_status() const {
   return _status;
-}
-
-int Person::get_max_hp() const {
-  return max_hp;
 }
 
 status& Person::set_status() {

@@ -1,5 +1,5 @@
-#include "../include/game_master.hpp"
-#include "../include/action.hpp"
+#include <game_master.hpp>
+#include <action.hpp>
 #include <ncurses.h>
 
 

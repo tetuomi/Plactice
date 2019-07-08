@@ -1,8 +1,8 @@
 #ifndef ACTION_HPP
 #define ACTION_HPP
 #include <vector>
-#include "person.hpp"
-#include "game_master.hpp"
+#include <person.hpp>
+#include <game_master.hpp>
 
 class Person;
 class Master;

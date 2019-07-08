@@ -1,11 +1,12 @@
 #ifndef GAME_MASTER_HPP
 #define GAME_MASTER_HPP
-#include "action.hpp"
+#include <action.hpp>
 #define CHOICES 2
 
 class Action;
 
 class Master {
+private:
   bool brave_turn;
   int selected;
 public:
