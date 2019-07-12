@@ -1,6 +1,7 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
 #define POSITION_NUMBER 8
+#define DISPLAY_CENTER 100
 #include <dealer.hpp>
 
 

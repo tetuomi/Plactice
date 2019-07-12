@@ -19,7 +19,7 @@ void Dealer::distribute()
   
 }
 
-vector<Stone> Dealer::get_pos() const
+std::vector<Stone> Dealer::get_pos() const
 {
   return pos;
 }

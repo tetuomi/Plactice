@@ -9,26 +9,26 @@ Display::Display()
   selected = 0;
 }
 
-void Dealer::show_stones(const Dealer& dealer)
+void Display::show_stones(const Dealer& dealer)
 {
-  for(int i = 30; i < 61; i++)
-    mvaddch(30 + i, 45, "|");
+  for(int i = 1; i < 31; i++)
+    mvprintw(10 + i, DISPLAY_CENTER, "|");
 
-  mvprintw(30,30,"------------------------------");
-  mvprintw(50,30,"------------------------------");
-  mvprintw(70,30,"------------------------------");
-  mvprintw(90,30,"------------------------------");  
+  mvprintw(10, DISPLAY_CENTER - 15,"------------------------------");
+  mvprintw(20, DISPLAY_CENTER - 15,"------------------------------");
+  mvprintw(30, DISPLAY_CENTER - 15,"------------------------------");
+  mvprintw(40, DISPLAY_CENTER - 15,"------------------------------");
   
-  for(int i = 0; i < POSITION_NUMBER; i++){
-    for(int j = 0; j < dealer.get_pos()[i].number; j++){
+  for(int i = 0; i <= POSITION_NUMBER; i++){
+    for(int j = 0; j < dealer.get_pos()[i].get_number(); j++){
       if(i < 3)
-        mvaddch(40 + i * 20, 37 + j, "o");
+        mvprintw( 5 + 10 * (i + 1), DISPLAY_CENTER - 7  + j, "o");
       else if(3 < i && i < 7)
-        mvaddch(40 + i * 20, 52 + j, "o");
+        mvprintw(5 + 10 * (i - 3), DISPLAY_CENTER + 5 + j, "o");
       else if(i == 3)
-        mvaddch(28, 29, "o");
+        mvprintw(8, DISPLAY_CENTER, "o");
       else
-        mvaddch(92, 29, "o");
+        mvprintw(42, DISPLAY_CENTER, "o");
     }
   }
 }

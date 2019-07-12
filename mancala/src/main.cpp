@@ -11,13 +11,14 @@ int main() {
   noecho();
   curs_set(0);
 
-  Stone stone;
   Dealer dealer;
   Display display;
 
   display.show_stones(dealer);
-  
-  getch();
-  
+  while(true)
+    {
+      const auto buff{getch()};
+      if(buff == '\n') break;
+    }
   endwin();
 }
