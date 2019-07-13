@@ -9,6 +9,16 @@ Display::Display()
   selected = 0;
 }
 
+int Display::get_turn() const
+{
+  return turn;
+}
+
+int Display::get_selected() const
+{
+  return selected;
+}
+
 void Display::show_stones(const Dealer& dealer)
 {
   for(int i = 1; i < 31; i++)
@@ -31,4 +41,17 @@ void Display::show_stones(const Dealer& dealer)
         mvprintw(42, DISPLAY_CENTER, "o");
     }
   }
+}
+
+void Display::add_selected() {
+  selected = (selected + 1) % CHOICES;
+}
+
+void Display::subtract_selected() {
+  selected = (CHOICES + selected - 1) % CHOICES;
+}
+
+void Display::switch_turn()
+{
+  turn ^= 1;
 }

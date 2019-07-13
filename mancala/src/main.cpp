@@ -14,11 +14,22 @@ int main() {
   Dealer dealer;
   Display display;
 
-  display.show_stones(dealer);
   while(true)
     {
-      const auto buff{getch()};
-      if(buff == '\n') break;
+      display.show_stones(dealer);
+      mvaddch(15 + 10 * display.get_selected(),
+              DISPLAY_CENTER - 15 + display.get_turn() * 30,
+              '*');
+      const auto key{getch()};
+      switch(key)
+        {
+        case KEY_UP:   display.subtract_selected();
+                       break;
+        case KEY_DOWN: display.add_selected();
+                       break;
+        }
+      clear();
+      if(key == '\n') display.switch_turn();
     }
   endwin();
 }

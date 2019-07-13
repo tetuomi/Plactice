@@ -26,4 +26,3 @@ add_executable(${PROJECT_NAME}.out
 
 target_link_libraries(${PROJECT_NAME}.out
   ${CURSES_LIBRARIES})
-x
