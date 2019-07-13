@@ -14,7 +14,7 @@ private:
 public:
   Dealer();
   void distribute(const Display& display);
-  void check() const;
+  bool check(int turn) const;
   std::vector<Stone> get_pos() const;
 };
 

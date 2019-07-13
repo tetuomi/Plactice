@@ -16,6 +16,7 @@ int main() {
 
   while(true)
     {
+      display.show_turn();
       display.show_stones(dealer);
       mvaddch(35 - 10 * display.get_selected(),
               DISPLAY_CENTER - 15 + display.get_turn() * 30,
@@ -34,8 +35,12 @@ int main() {
       if(key == '\n')
       {
         dealer.distribute(display);
+        if(dealer.check(display.get_turn())) break;
         display.switch_turn();
       }
     }
+  display.show_stones(dealer);
+  mvprintw(50, DISPLAY_CENTER, "player%d's win!!!!", display.get_turn() + 1);
+  getch();
   endwin();
 }

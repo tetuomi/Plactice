@@ -17,6 +17,7 @@ public:
   int get_turn() const;
   int get_selected() const;
   void show_stones(const Dealer& dealer);
+  void show_turn() const;
   void add_selected();
   void subtract_selected();
   void switch_turn();
