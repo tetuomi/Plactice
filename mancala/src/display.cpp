@@ -5,7 +5,7 @@
 
 Display::Display()
 {
-  turn = 1;
+  turn = 0;
   selected = 0;
 }
 
@@ -32,22 +32,24 @@ void Display::show_stones(const Dealer& dealer)
   for(int i = 0; i <= POSITION_NUMBER; i++){
     for(int j = 0; j < dealer.get_pos()[i].get_number(); j++){
       if(i < 3)
-        mvprintw( 5 + 10 * (i + 1), DISPLAY_CENTER - 7  + j, "o");
+        mvprintw(35 - 10 * i, DISPLAY_CENTER - 7  + j, "o");
       else if(3 < i && i < 7)
         mvprintw(5 + 10 * (i - 3), DISPLAY_CENTER + 5 + j, "o");
       else if(i == 3)
-        mvprintw(8, DISPLAY_CENTER, "o");
+        mvprintw(8, DISPLAY_CENTER + j, "o");
       else
-        mvprintw(42, DISPLAY_CENTER, "o");
+        mvprintw(42, DISPLAY_CENTER + j, "o");
     }
   }
 }
 
-void Display::add_selected() {
+void Display::add_selected()
+{
   selected = (selected + 1) % CHOICES;
 }
 
-void Display::subtract_selected() {
+void Display::subtract_selected()
+{
   selected = (CHOICES + selected - 1) % CHOICES;
 }
 

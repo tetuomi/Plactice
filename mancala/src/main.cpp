@@ -17,15 +17,15 @@ int main() {
   while(true)
     {
       display.show_stones(dealer);
-      mvaddch(15 + 10 * display.get_selected(),
+      mvaddch(35 - 10 * display.get_selected(),
               DISPLAY_CENTER - 15 + display.get_turn() * 30,
               '*');
       const auto key{getch()};
       switch(key)
         {
-        case KEY_UP:   display.subtract_selected();
+        case KEY_UP:   display.add_selected();
                        break;
-        case KEY_DOWN: display.add_selected();
+        case KEY_DOWN: display.subtract_selected();
                        break;
         }
       clear();
