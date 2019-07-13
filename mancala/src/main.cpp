@@ -22,14 +22,20 @@ int main() {
               '*');
       const auto key{getch()};
       switch(key)
-        {
-        case KEY_UP:   display.add_selected();
-                       break;
-        case KEY_DOWN: display.subtract_selected();
-                       break;
-        }
+      {
+        case KEY_UP:
+          display.add_selected();
+          break;
+        case KEY_DOWN:
+          display.subtract_selected();
+          break;
+      }
       clear();
-      if(key == '\n') display.switch_turn();
+      if(key == '\n')
+      {
+        dealer.distribute(display);
+        display.switch_turn();
+      }
     }
   endwin();
 }

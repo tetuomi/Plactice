@@ -10,7 +10,7 @@ public:
   Stone(int _number);
   int get_number() const;
   void add();
-  void subtract();
+  void kill();
 };
 
 #endif

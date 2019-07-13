@@ -21,6 +21,7 @@ int Display::get_selected() const
 
 void Display::show_stones(const Dealer& dealer)
 {
+  mvprintw(10,20, "Distribute stones clockwise");
   for(int i = 1; i < 31; i++)
     mvprintw(10 + i, DISPLAY_CENTER, "|");
 

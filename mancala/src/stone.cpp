@@ -16,7 +16,7 @@ void Stone::add()
   number++;
 }
 
-void Stone::subtract()
+void Stone::kill()
 {
-  number--;
+  number = 0;
 }
