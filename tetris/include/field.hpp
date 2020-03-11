@@ -23,6 +23,7 @@ private:
 public:
   Field();
   bool is_touching_mino(Mino& mino) const;
+  bool accept_to_move(Mino& mino, Direction dire) const;
   void change_mino_to_field(Mino& mino);
   void set_init_posi();
   int how_many_lines_filled();
@@ -30,7 +31,7 @@ public:
   std::vector<std::vector<bool>> get_field() const;
   std::pair<int, int>::first_type get_x() const;
   std::pair<int, int>::second_type get_y() const;
-  void move_mino(Direction dire);
+  void move_mino(Mino& mino, Direction dire);
 };
 
 #endif

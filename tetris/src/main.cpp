@@ -29,7 +29,7 @@ int main()
     {
       [&]{
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
-        field.move_mino(Direction::DOWN);
+        field.move_mino(*mino_ptr, Direction::DOWN);
       }
     };
 
@@ -44,10 +44,10 @@ int main()
     switch(key)
     {
       case KEY_LEFT:
-        field.move_mino(Direction::LEFT);
+        field.move_mino(*mino_ptr, Direction::LEFT);
         break;
       case KEY_RIGHT:
-        field.move_mino(Direction::RIGHT);
+        field.move_mino(*mino_ptr, Direction::RIGHT);
         break;
       case KEY_DOWN:
         mino_ptr->rotate_mino(-IMAGINARY);
