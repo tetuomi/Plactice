@@ -100,6 +100,16 @@ void Field::kill_lines(std::vector<int> lines)
       field[lines[i]][j] = false;
     }
   }
+  
+  for (std::size_t i = 0;i < lines.size();i++)
+  {
+    for (std::size_t j = lines.back();j > 0;j--)
+    {
+      const auto tmp{field[j]};
+      field[j] = field[j - 1];
+      field[j - 1] = tmp;
+    }
+  }
 }
 
 std::vector<std::vector<bool>> Field::get_field() const
