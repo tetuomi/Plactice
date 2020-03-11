@@ -4,6 +4,8 @@
 #include <field.hpp>
 #include <display.hpp>
 #include <ncurses.h>
+#include <thread>
+#include <chrono>
 
 int main()
 {
@@ -11,17 +13,26 @@ int main()
   cbreak();
   keypad(stdscr, TRUE);
   nodelay(stdscr, FALSE);
+  timeout(300); //キー入力待ち時間(ms)
   noecho();
   curs_set(0);
+  refresh();
   
-  std::unique_ptr<Mino> mino_ptr{std::make_unique<Mino>(I)};
+  std::unique_ptr<Mino> mino_ptr{std::make_unique<Mino>(S)};
   Field field;
   Display display;
-
+  
   while(true)
   {
     display.show(*mino_ptr, field);
-    flushinp();
+    std::thread fall_mino
+    {
+      [&]{
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        field.move_mino(Direction::DOWN);
+      }
+    };
+    
     const auto key{getch()};
     switch(key)
     {
@@ -32,12 +43,14 @@ int main()
         field.move_mino(Direction::RIGHT);
         break;
       case KEY_DOWN:
-        field.move_mino(Direction::DOWN);
+        mino_ptr->rotate_mino(-IMAGINARY);
         break;
       case KEY_UP:
         mino_ptr->rotate_mino(IMAGINARY);
         break;
     }
+    fall_mino.join();
+    flushinp();
   }
   endwin();
 }
