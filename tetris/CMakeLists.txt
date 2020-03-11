@@ -8,7 +8,7 @@ project(
 find_package(Curses REQUIRED)
 
 set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_FLAGS "-Wall -lncurses")
+set(CMAKE_CXX_FLAGS "-Wall -lncurses -pthread")
 set(CMAKE_CXX_STANDARD 14)
 
 file(GLOB_RECURSE PROJECT_SOURCE_FILES ${PROJECT_SOURCE_DIR}/src/*)
