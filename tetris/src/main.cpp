@@ -7,18 +7,20 @@
 #include <thread>
 #include <chrono>
 
+#define TIMEOUT 200
+
 int main()
 {
   initscr();
   cbreak();
   keypad(stdscr, TRUE);
   nodelay(stdscr, FALSE);
-  timeout(300); //キー入力待ち時間(ms)
+  timeout(TIMEOUT); //キー入力待ち時間(ms)
   noecho();
   curs_set(0);
   refresh();
   
-  std::unique_ptr<Mino> mino_ptr{std::make_unique<Mino>(S)};
+  std::unique_ptr<Mino> mino_ptr{std::make_unique<Mino>(I)};
   Field field;
   Display display;
   
@@ -28,7 +30,7 @@ int main()
     std::thread fall_mino
     {
       [&]{
-        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        std::this_thread::sleep_for(std::chrono::milliseconds(TIMEOUT));
         field.move_mino(*mino_ptr, Direction::DOWN);
       }
     };
@@ -38,7 +40,7 @@ int main()
       field.change_mino_to_field(*mino_ptr);
       field.kill_lines(field.filled_lines_index());
       field.set_init_posi();
-      mino_ptr = std::make_unique<Mino>(T);
+      mino_ptr = std::make_unique<Mino>(I);
     }
 
     const auto key{getch()};
