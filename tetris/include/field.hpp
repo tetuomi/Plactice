@@ -26,8 +26,8 @@ public:
   bool accept_to_move(Mino& mino, Direction dire) const;
   void change_mino_to_field(Mino& mino);
   void set_init_posi();
-  int how_many_lines_filled();
-  void kill_lines(int lines);
+  std::vector<int> filled_lines_index() const;
+  void kill_lines(std::vector<int>);
   std::vector<std::vector<bool>> get_field() const;
   std::pair<int, int>::first_type get_x() const;
   std::pair<int, int>::second_type get_y() const;

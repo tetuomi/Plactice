@@ -1,4 +1,3 @@
-
 #include <mino.hpp>
 #include <field.hpp>
 
@@ -73,13 +72,34 @@ void Field::set_init_posi()
   posi.second = 2;
 }
 
-int Field::how_many_lines_filled()
+std::vector<int> Field::filled_lines_index() const
 {
-  return 0;
+  std::vector<int> lines;
+  int count;
+  for (int i = 0;i < HEIGHT;i++)
+  {
+    count = 0;
+    for (int j = 0;j < WIDTH;j++)
+    {
+      count += field[i][j];
+    }
+    if (count == WIDTH)
+    {
+      lines.push_back(i);
+    }
+  }
+  return lines;
 }
 
-void Field::kill_lines(int lines)
+void Field::kill_lines(std::vector<int> lines)
 {
+  for (std::size_t i = 0;i < lines.size();i++)
+  {
+    for (std::size_t j = 0;j < WIDTH;j++)
+    {
+      field[lines[i]][j] = false;
+    }
+  }
 }
 
 std::vector<std::vector<bool>> Field::get_field() const
