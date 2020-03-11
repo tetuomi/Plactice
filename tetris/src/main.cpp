@@ -32,7 +32,14 @@ int main()
         field.move_mino(Direction::DOWN);
       }
     };
-    
+
+    if (field.is_touching_mino(*mino_ptr))
+    {
+      field.change_mino_to_field(*mino_ptr);
+      field.set_init_posi();
+      mino_ptr = std::make_unique<Mino>(T);
+    }
+
     const auto key{getch()};
     switch(key)
     {

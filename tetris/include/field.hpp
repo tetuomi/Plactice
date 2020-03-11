@@ -22,8 +22,9 @@ private:
   
 public:
   Field();
-  bool is_touching_mino(Mino& mino);
+  bool is_touching_mino(Mino& mino) const;
   void change_mino_to_field(Mino& mino);
+  void set_init_posi();
   int how_many_lines_filled();
   void kill_lines(int lines);
   std::vector<std::vector<bool>> get_field() const;
