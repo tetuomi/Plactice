@@ -24,6 +24,7 @@ public:
   Field();
   bool is_touching_mino(Mino& mino) const;
   bool accept_to_move(Mino& mino, Direction dire) const;
+  bool accept_to_rotate(Mino& mino,int imaginary) const;
   void change_mino_to_field(Mino& mino);
   void set_init_posi();
   std::vector<int> filled_lines_index() const;

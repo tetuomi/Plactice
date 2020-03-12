@@ -58,6 +58,26 @@ bool Field::accept_to_move(Mino& mino, Direction dire) const
   }
   return accept;
 }
+
+bool Field::accept_to_rotate(Mino& mino,int imaginary) const
+{
+  bool accept = true;
+  Mino copy_mino{mino};
+  copy_mino.rotate_mino(imaginary);
+  const std::vector<std::vector<ComplexCell>> next_mino{copy_mino.get_mino()};
+  for (int i = 0;i < MINO_SIZE;i++)
+  {
+    for (int j = 0;j < MINO_SIZE;j++)
+    {
+      if (next_mino[i][j].is_active && field[posi.second - next_mino[i][j].im][posi.first + next_mino[i][j].re])
+      {
+        accept = false;
+      }
+    }
+  }
+  return accept;
+}
+
 void Field::change_mino_to_field(Mino& mino)
 {
   const std::vector<std::vector<ComplexCell>> _mino{mino.get_mino()};

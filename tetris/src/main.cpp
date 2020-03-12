@@ -53,10 +53,10 @@ int main()
         field.move_mino(*mino_ptr, Direction::RIGHT);
         break;
       case KEY_DOWN:
-        mino_ptr->rotate_mino(-IMAGINARY);
+        if (field.accept_to_rotate(*mino_ptr, -IMAGINARY)) mino_ptr->rotate_mino(-IMAGINARY);
         break;
       case KEY_UP:
-        mino_ptr->rotate_mino(IMAGINARY);
+        if (field.accept_to_rotate(*mino_ptr, IMAGINARY)) mino_ptr->rotate_mino(IMAGINARY);
         break;
     }
     fall_mino.join();
