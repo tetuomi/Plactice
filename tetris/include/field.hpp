@@ -4,8 +4,8 @@
 #include <mino.hpp>
 #include <vector>
 
-#define HEIGHT 30
-#define WIDTH 10
+#define HEIGHT 20
+#define WIDTH 8
 
 class Mino;
 

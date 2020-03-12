@@ -3,12 +3,18 @@
 
 
 Field::Field()
-  : field(HEIGHT+1, std::vector<bool>(WIDTH, false))
+  : field(HEIGHT+1, std::vector<bool>(WIDTH + 2, false))
   , posi(WIDTH / 2, 2)
 {
-  for (int i = 0;i < WIDTH;i++)
-  { 
-    field[HEIGHT][i] = true;
+  for (int i = 0;i < HEIGHT + 1;i++)
+  {
+    for (int j = 0;j < WIDTH + 2;j++)
+    {
+      if (i == HEIGHT || j == 0 || j == WIDTH + 1)
+      {
+        field[i][j] = true;
+      }
+    }
   }
 }
 
@@ -39,11 +45,11 @@ bool Field::accept_to_move(Mino& mino, Direction dire) const
     for (int j = 0;j < MINO_SIZE;j++)
     {
       mino_posi = posi.first + _mino[i][j].re;
-      if (dire == Direction::RIGHT &&_mino[i][j].is_active && WIDTH - 1 <= mino_posi)
+      if (dire == Direction::RIGHT &&_mino[i][j].is_active && WIDTH <= mino_posi)
       {
         accept = false;
       }
-      else if (dire == Direction::LEFT &&_mino[i][j].is_active && mino_posi <= 0)
+      else if (dire == Direction::LEFT &&_mino[i][j].is_active && mino_posi <= 1)
       {
         accept = false;
       }
@@ -79,7 +85,7 @@ std::vector<int> Field::filled_lines_index() const
   for (int i = 0;i < HEIGHT;i++)
   {
     count = 0;
-    for (int j = 0;j < WIDTH;j++)
+    for (int j = 1;j < WIDTH + 1;j++)
     {
       count += field[i][j];
     }
@@ -95,7 +101,7 @@ void Field::kill_lines(std::vector<int> lines)
 {
   for (std::size_t i = 0;i < lines.size();i++)
   {
-    for (std::size_t j = 0;j < WIDTH;j++)
+    for (std::size_t j = 1;j < WIDTH + 1;j++)
     {
       field[lines[i]][j] = false;
     }
