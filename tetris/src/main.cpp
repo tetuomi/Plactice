@@ -6,8 +6,10 @@
 #include <ncurses.h>
 #include <thread>
 #include <chrono>
+#include <random>
 
-#define TIMEOUT 200
+#define TIMEOUT 300
+#define MINO_TYPES 7
 
 int main()
 {
@@ -19,8 +21,11 @@ int main()
   noecho();
   curs_set(0);
   refresh();
+
+  std::random_device seed_gen;
+  std::minstd_rand0 engine(seed_gen());
   
-  std::unique_ptr<Mino> mino_ptr{std::make_unique<Mino>(I)};
+  std::unique_ptr<Mino> mino_ptr{std::make_unique<Mino>(MINOES[(int)engine() % MINO_TYPES])};
   Field field;
   Display display;
   
@@ -60,7 +65,7 @@ int main()
       field.change_mino_to_field(*mino_ptr);
       field.kill_lines(field.filled_lines_index());
       field.set_init_posi();
-      mino_ptr = std::make_unique<Mino>(I);
+      mino_ptr = std::make_unique<Mino>(MINOES[(int)engine() % MINO_TYPES]);
     }
     if (field.game_over())
     {

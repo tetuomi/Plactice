@@ -27,46 +27,42 @@ public:
   std::vector<std::vector<ComplexCell>> get_mino() const;
 };
 
-static Mino I{{
-  {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,false)},
-  {ComplexCell(-1,0,false), ComplexCell(0,0,true), ComplexCell(1,0,false)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,true), ComplexCell(1,-1,false)}
-}};
-
-static Mino O{{
-  {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,true)},
-  {ComplexCell(-1,0,false), ComplexCell(0,0,true), ComplexCell(1,0,true)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
-}};
-
-static Mino S{{
-  {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,true)},
-  {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,false)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
-}};
-
-static Mino Z{{
-  {ComplexCell(-1,1,true), ComplexCell(0,1,true), ComplexCell(1,1,false)},
-  {ComplexCell(-1,0,false), ComplexCell(0,0,true), ComplexCell(1,0,true)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
-}};
-
-static Mino J{{
-  {ComplexCell(-1,1,true), ComplexCell(0,1,false), ComplexCell(1,1,false)},
-  {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,true)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
-}};
-
-static Mino L{{
-  {ComplexCell(-1,1,false), ComplexCell(0,1,false), ComplexCell(1,1,true)},
-  {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,true)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
-}};
-
-static Mino T{{
-  {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,false)},
-  {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,true)},
-  {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
-}};
+static Mino MINOES[] = {
+  {{
+    {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,false)},
+    {ComplexCell(-1,0,false), ComplexCell(0,0,true), ComplexCell(1,0,false)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,true), ComplexCell(1,-1,false)}
+    }},
+  {{
+    {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,true)},
+    {ComplexCell(-1,0,false), ComplexCell(0,0,true), ComplexCell(1,0,true)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
+    }},
+  {{
+    {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,true)},
+    {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,false)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
+    }},
+  {{
+    {ComplexCell(-1,1,true), ComplexCell(0,1,true), ComplexCell(1,1,false)},
+    {ComplexCell(-1,0,false), ComplexCell(0,0,true), ComplexCell(1,0,true)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
+    }},
+  {{
+    {ComplexCell(-1,1,true), ComplexCell(0,1,false), ComplexCell(1,1,false)},
+    {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,true)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
+    }},
+  {{
+    {ComplexCell(-1,1,false), ComplexCell(0,1,false), ComplexCell(1,1,true)},
+    {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,true)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
+    }},
+  {{
+    {ComplexCell(-1,1,false), ComplexCell(0,1,true), ComplexCell(1,1,false)},
+    {ComplexCell(-1,0,true), ComplexCell(0,0,true), ComplexCell(1,0,true)},
+    {ComplexCell(-1,-1,false), ComplexCell(0,-1,false), ComplexCell(1,-1,false)}
+    }}
+};
 
 #endif
