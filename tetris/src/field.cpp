@@ -38,18 +38,19 @@ bool Field::is_touching_mino(Mino& mino) const
 bool Field::accept_to_move(Mino& mino, Direction dire) const
 {
   bool accept = true;
-  int mino_posi;
+  int mino_posi_x, mino_posi_y;
   const std::vector<std::vector<ComplexCell>> _mino{mino.get_mino()};
   for (int i = 0;i < MINO_SIZE;i++)
   {
     for (int j = 0;j < MINO_SIZE;j++)
     {
-      mino_posi = posi.first + _mino[i][j].re;
-      if (dire == Direction::RIGHT &&_mino[i][j].is_active && WIDTH <= mino_posi)
+      mino_posi_x = posi.first + _mino[i][j].re;
+      mino_posi_y = posi.second - _mino[i][j].im;
+      if (dire == Direction::RIGHT &&_mino[i][j].is_active && field[mino_posi_y][mino_posi_x + 1])
       {
         accept = false;
       }
-      else if (dire == Direction::LEFT &&_mino[i][j].is_active && mino_posi <= 1)
+      else if (dire == Direction::LEFT &&_mino[i][j].is_active && field[mino_posi_y][mino_posi_x - 1])
       {
         accept = false;
       }
