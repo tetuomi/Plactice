@@ -167,3 +167,8 @@ void Field::move_mino(Mino& mino, Direction dire)
       break;
   }
 }
+
+bool Field::game_over() const
+{
+  return field[2][WIDTH / 2];
+}

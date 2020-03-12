@@ -33,6 +33,7 @@ public:
   std::pair<int, int>::first_type get_x() const;
   std::pair<int, int>::second_type get_y() const;
   void move_mino(Mino& mino, Direction dire);
+  bool game_over() const;
 };
 
 #endif
