@@ -24,7 +24,7 @@ private:
   std::unique_ptr<WINDOW, WindowPtrDeleter> win;
 public:
   Display();
-  void show(const Mino& mino, const Field& field);
+  void show(const Mino& mino, const Field& field) const;
 };
 
 #endif

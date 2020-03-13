@@ -34,6 +34,7 @@ public:
   std::pair<int, int>::second_type get_y() const;
   void move_mino(Mino& mino, Direction dire);
   bool game_over() const;
+  std::pair<int, int> predict_fallen_mino(const Mino& mino) const;
 };
 
 #endif

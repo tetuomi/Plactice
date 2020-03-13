@@ -172,3 +172,22 @@ bool Field::game_over() const
 {
   return field[2][WIDTH / 2];
 }
+
+std::pair<int, int> Field::predict_fallen_mino(const Mino& mino) const
+{
+  std::pair<int, int> fallen_mino_posi{posi};
+  const std::vector<std::vector<ComplexCell>> _mino{mino.get_mino()};
+  for (;;fallen_mino_posi.second++)
+  {
+    for (int i = 0;i < MINO_SIZE;i++)
+    {
+      for (int j = 0;j < MINO_SIZE;j++)
+      {
+        if (_mino[i][j].is_active && field[fallen_mino_posi.second - _mino[i][j].im][fallen_mino_posi.first + _mino[i][j].re])
+        {
+          return fallen_mino_posi;
+        }
+      }
+    }
+  }
+}
