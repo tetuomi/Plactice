@@ -1,0 +1,2 @@
+tetris-ncursesをOpenSiv3dを用いて書き直した
+OpenSiv3dの恩恵をあまり受けれてないので、また書く
