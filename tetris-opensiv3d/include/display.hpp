@@ -1,7 +1,7 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
 
-#include "/opt/OpenSiv3D/Siv3D/include/Siv3D.hpp"
+#include <Siv3D.hpp>
 #include <mino.hpp>
 #include <field.hpp>
 

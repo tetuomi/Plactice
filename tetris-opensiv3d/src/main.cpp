@@ -3,7 +3,7 @@
 #include <mino.hpp>
 #include <field.hpp>
 #include <display.hpp>
-#include "/opt/OpenSiv3D/Siv3D/include/Siv3D.hpp"
+#include <Siv3D.hpp>
 #include <random>
 
 #define TIMEOUT 300
