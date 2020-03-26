@@ -19,7 +19,7 @@ void show(const Mino& mino, const Field& field)
     {
       if (_field[i][j])
       {
-        Rect(MAG * j - 30, MAG * i + 10, MAG, MAG).draw(Palette::Orange);
+        Rect(MAG * j - 30, MAG * i + 10, MAG - 2, MAG -2 ).draw(Palette::Orange);
       }
     }
   }
