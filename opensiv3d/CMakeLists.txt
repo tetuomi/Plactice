@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.0)
 
 find_package(PkgConfig)
 
-project(Tetris CXX)
+project(test CXX)
 enable_language(C)
 
 set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1 -pthread")
@@ -40,9 +40,9 @@ set(SOURCE_FILES
 	"./Main.cpp"
 )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
-add_executable(tetris.out ${SOURCE_FILES})
+add_executable(${PROJECT_NAME}.out ${SOURCE_FILES})
 
-target_link_libraries(tetris.out
+target_link_libraries(${PROJECT_NAME}.out
 	${OPENCV4_LIBRARIES}
 	${XFT_LIBRARIES}
 	-lOpenGL
