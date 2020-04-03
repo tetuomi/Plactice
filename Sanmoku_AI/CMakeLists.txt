@@ -14,4 +14,5 @@ add_executable(${PROJECT_NAME}.out
   src/main.cpp
   src/person.cpp
   src/player.cpp
+  src/random.cpp
 )
