@@ -90,10 +90,25 @@ void GameMaster::result() const
 {
     if (winner == Winner::Player)
     {
-        std::cout << (turn? "O" : "X") << "のかてぃ\n\n";
+        std::cout << ((!first_player_turn)? "O" : "X") << "のかてぃ\n";
     }
     else
     {
-        std::cout << "ひきわけぇ\n\n";
+        std::cout << "ひきわけぇ\n";
     }
+}
+
+std::size_t GameMaster::decide_reward() const
+{
+    std::size_t reward{0};
+    if (winner == Winner::Player)
+    {
+        reward = (!first_player_turn)? 1 : -1;
+    }
+    return reward;
+}
+
+std::size_t GameMaster::get_turn() const
+{
+    return turn;
 }
