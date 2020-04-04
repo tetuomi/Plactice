@@ -3,15 +3,18 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <cmath>
 
 #define ETA 0.1
 #define GAMMA 0.9
 
-AI::AI()
+AI::AI(std::string fn)
     : Player()
     , q_table(19683, std::vector<float>(9, 0.0)) // 19683 = 3^9
     , epsilon{0.5}
+    , filename{fn}
 {}
 
 std::size_t AI::find_q_row(std::size_t before_hands) const
@@ -107,4 +110,46 @@ void AI::init_param()
     chosen_hands = std::vector<std::size_t>();
 
     epsilon = 0.5;
+}
+
+void AI::save_file() const
+{
+    std::ofstream writing_file;
+    writing_file.open(filename);
+
+    for (std::size_t row{0};row < 19683;++row)
+    {
+        for (std::size_t column{0};column < 9;++column)
+        {
+            writing_file << q_table[row][column] << ' ';
+        }
+        writing_file << std::endl;
+    }
+}
+
+void AI::load_file()
+{
+    std::ifstream ifs(filename, std::ios::in);
+
+    if (!ifs)
+    {
+        std::cout << "ファイルの読み込みに失敗しました\n";
+    }
+    else
+    {
+        std::cout << "ファイルの読み込みに成功しました\n";
+        std::string tmp;
+        std::stringstream ss;
+        std::size_t row = 0;
+        
+        while (getline(ifs, tmp))
+        {
+            ss << tmp;
+            ss >> q_table[row][0] >> q_table[row][1] >> q_table[row][2]
+               >> q_table[row][3] >> q_table[row][4] >> q_table[row][5]
+               >> q_table[row][6] >> q_table[row][7] >> q_table[row][8];
+            ++row;
+        }
+    }
+    ifs.close();
 }

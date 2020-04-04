@@ -5,12 +5,14 @@
 
 int main ()
 {
-    AI ai;
+    AI ai("Q_table.txt");
     Random random;
 
     float init_epsilon = 0.5, epsilon;
-    std::size_t episode = 5,reward = 0;
+    std::size_t episode = 50000,reward = 0;
     bool end_flag;
+
+    ai.load_file();
     
     for (std::size_t i{0};i < episode;++i)
     {
@@ -19,7 +21,7 @@ int main ()
         ai.set_epsilon(epsilon);
         while (true)
         {   
-            master.draw();             
+            //master.draw();             
             master.game(ai, random); // (先行、後攻)
             
             end_flag = master.game_end();
@@ -40,5 +42,8 @@ int main ()
         ai.init_param();
         random.init_param();
     }
+
+    ai.save_file();
+    
     return 0;
 }
