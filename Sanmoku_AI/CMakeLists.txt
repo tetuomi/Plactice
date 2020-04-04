@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(include)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+
 add_executable(${PROJECT_NAME}.out
   src/ai.cpp
   src/game_master.cpp
