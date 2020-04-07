@@ -27,7 +27,7 @@ public:
     void game(Player& first_player, Player& second_player);
     bool game_end();
     void result() const;
-    std::size_t decide_reward() const;
+    float decide_reward() const;
     std::size_t get_turn() const;
 };
 

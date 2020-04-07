@@ -98,12 +98,12 @@ void GameMaster::result() const
     }
 }
 
-std::size_t GameMaster::decide_reward() const
+float GameMaster::decide_reward() const
 {
-    std::size_t reward{0};
+    float reward{0};
     if (winner == Winner::Player)
     {
-        reward = (!first_player_turn)? 1 : -1;
+        reward = (!first_player_turn)? 1.0 : -1.0;
     }
     return reward;
 }
