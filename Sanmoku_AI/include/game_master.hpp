@@ -17,14 +17,14 @@ class GameMaster
 {
 private:
     std::vector<std::string> field;
-    std::size_t turn;
-    bool first_player_turn;
+    std::size_t _turn;
+    std::size_t _player_num;
     Winner winner;
     
 public:
-    GameMaster();
+    GameMaster(std::size_t player_num);
     void draw() const;
-    void game(Player& first_player, Player& second_player);
+    void game(Player& player1, Player& player2);
     bool game_end();
     void result() const;
     float decide_reward() const;
